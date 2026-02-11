@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Valentine's Day ❤️</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e, #ffa8a8);
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+        }
+        
+        .step {
+            display: none;
+        }
+        
+        .step.active {
+            display: block;
+        }
+        
+        .couple-pic {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border: 5px solid #e74c3c;
+            border-radius: 15px;
+            margin: 20px auto;
+            display: block;
+        }
+        
+        .welcome-pic {
+            width: 100%;
+            max-width: 350px;
+            height: auto;
+            border-radius: 15px;
+            margin: 20px auto;
+            display: block;
+        }
+        
+        .video-player {
+            width: 100%;
+            max-width: 400px;
+            border: 5px solid #e74c3c;
+            border-radius: 15px;
+            margin: 20px auto;
+            display: block;
+        }
+        
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin: 20px auto;
+        }
+        
+        .play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: rgba(231, 76, 60, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .play-btn:hover {
+            background: rgba(231, 76, 60, 1);
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+        
+        .play-btn.hidden {
+            display: none;
+        }
+        
+        .play-btn::after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 25px solid white;
+            border-top: 15px solid transparent;
+            border-bottom: 15px solid transparent;
+            margin-left: 5px;
+        }
+        
+        .next-btn {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background 0.3s;
+        }
+        
+        .next-btn:hover {
+            background: #c0392b;
+        }
+        
+        .heart {
+            font-size: 80px;
+            color: #e74c3c;
+            animation: heartbeat 1.5s ease-in-out infinite;
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin: 20px 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .message {
+            color: #34495e;
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin: 30px 0;
+        }
+        
+        .letter {
+            color: #34495e;
+            font-size: 1.1em;
+            line-height: 1.8;
+            text-align: left;
+            margin: 20px 0;
+            white-space: pre-wrap;
+        }
+        
+        .floating-hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        
+        .floating-heart {
+            position: absolute;
+            color: rgba(231, 76, 60, 0.7);
+            font-size: 20px;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-hearts">
+        <div class="floating-heart" style="left: 10%; animation-delay: 0s;">❤️</div>
+        <div class="floating-heart" style="left: 20%; animation-delay: 1s;">💕</div>
+        <div class="floating-heart" style="left: 30%; animation-delay: 2s;">💖</div>
+        <div class="floating-heart" style="left: 40%; animation-delay: 3s;">❤️</div>
+        <div class="floating-heart" style="left: 50%; animation-delay: 4s;">💕</div>
+        <div class="floating-heart" style="left: 60%; animation-delay: 5s;">💖</div>
+        <div class="floating-heart" style="left: 70%; animation-delay: 0.5s;">❤️</div>
+        <div class="floating-heart" style="left: 80%; animation-delay: 1.5s;">💕</div>
+        <div class="floating-heart" style="left: 90%; animation-delay: 2.5s;">💖</div>
+    </div>
+    
+    <audio id="backgroundMusic" loop autoplay>
+        <source src="John_Legend_-_All_of_Me__Official_Video_(256k).mp3" type="audio/mpeg">
+    </audio>
+    
+    <div class="container">
+        <div class="step active" id="step1">
+            <div class="heart">💖</div>
+            <h1>Welcome to Valentine's Day!</h1>
+            <img src="2.jpg" alt="Welcome" class="welcome-pic">
+            <p style="color: #e74c3c; font-size: 1.5em; margin: 10px 0; font-weight: bold;">My Dearest Bongie ❤️</p>
+            <button class="next-btn" onclick="nextStep()">Enter ❤️</button>
+        </div>
+        
+        <div class="step" id="step2">
+            <img src="1.jpg" alt="Us Together" class="couple-pic">
+            <div class="message">
+                <p>Every moment with you is a treasure. You're not just my girlfriend, you're my best friend, my soulmate, and the love of my life.</p>
+                <p>This picture captures just a fraction of the happiness you bring into my world every single day. 💕</p>
+                <p>I love you more than words can say ❤️</p>
+            </div>
+            <button class="next-btn" onclick="nextStep()">Next 💖</button>
+        </div>
+        
+        <div class="step" id="step3">
+            <h1>Remember This? 😍</h1>
+            <div class="video-wrapper">
+                <video class="video-player" id="myVideo">
+                    <source src="bongie.mp4" type="video/mp4">
+                </video>
+                <div class="play-btn" id="playBtn" onclick="playVideo()"></div>
+            </div>
+            <div class="message">
+                <p>When you said you had a boyfriend in that group, I couldn't believe it at first. But man, that love hit different! 💘</p>
+                <p>When I got this video of you at the event, my heart just melted. You're everything I ever dreamed of and more.</p>
+                <p>I'm the luckiest guy in the world to call you mine, Bongie ❤️</p>
+            </div>
+            <button class="next-btn" onclick="nextStep()">Next 💖</button>
+        </div>
+        
+        <div class="step" id="step4">
+            <h1>Your Beauty 😍✨</h1>
+            <div class="message">
+                <p>You are absolutely stunning, inside and out. Every time I look at you, I fall in love all over again.</p>
+            </div>
+            <img src="4.jpg" alt="Beautiful You" class="couple-pic">
+            <div class="message">
+                <p>Your smile lights up my world, your eyes captivate my soul, and your beauty takes my breath away every single day. 💕</p>
+                <p>You're not just beautiful, you're absolutely gorgeous, Bongie! ❤️</p>
+            </div>
+            <button class="next-btn" onclick="nextStep()">Read Valentine Message 💌</button>
+        </div>
+        
+        <div class="step" id="step5">
+            <img src="5.jpg" alt="My Love" class="couple-pic">
+            <div class="letter" id="typedLetter"></div>
+        </div>
+    </div>
+    
+    <script>
+        let currentStep = 0;
+        const steps = document.querySelectorAll('.step');
+        const backgroundMusic = document.getElementById('backgroundMusic');
+        
+        // Start music immediately when page loads
+        backgroundMusic.volume = 0.3;
+        backgroundMusic.play();
+        
+        const letterText = `My dearest Wongani ❤️,
+
+I never believed in love at first sight… until my eyes met yours and my heart decided before my mind could catch up 🥹. You became someone who matters to me in ways I can't explain ✨.
+
+We've had our storms 🌧️, but what makes me proud is that we chose to stay 🤝, to talk 🗣️, to fix 🔧, to grow 🌱. You loved me when I was difficult, quiet, and flawed. That kind of love is rare 💎. That kind of love is home 🏡.
+
+With you, I don't have to pretend 🎭. I can be weak, tired, and just me. Thank you for seeing my flaws and loving me anyway. Thank you for believing in me when I struggle to believe in myself 🥺❤️.
+
+I may not be your husband yet 😭, but my heart already treats you like my wife 👩❤️👨. I don't promise perfection. I promise effort 💪. I promise honesty 🧠. I promise to keep choosing you, even on the days when choosing is hard.
+
+Happy Valentine's Day, my love 💕.
+If love had a face, it would look like you 😍.
+
+— Yours always,
+Mada`;
+        
+        function nextStep() {
+            steps[currentStep].classList.remove('active');
+            currentStep++;
+            if (currentStep < steps.length) {
+                steps[currentStep].classList.add('active');
+                if (currentStep === 4) {
+                    typeWriter();
+                }
+                // Scroll to top when new step is shown
+                window.scrollTo(0, 0);
+            }
+            // Resume background music when navigating
+            if (backgroundMusic.paused) {
+                backgroundMusic.play();
+            }
+        }
+        
+        function playVideo() {
+            const video = document.getElementById('myVideo');
+            const playBtn = document.getElementById('playBtn');
+            video.controls = true;
+            playBtn.classList.add('hidden');
+            
+            // Pause background music when video starts
+            backgroundMusic.pause();
+            
+            video.play();
+            
+            // Resume background music when video ends
+            video.addEventListener('ended', () => {
+                backgroundMusic.play();
+            });
+            
+            // Resume background music when video is paused
+            video.addEventListener('pause', () => {
+                if (!video.ended) {
+                    backgroundMusic.play();
+                }
+            });
+        }
+        
+        let i = 0;
+        function typeWriter() {
+            if (i < letterText.length) {
+                document.getElementById('typedLetter').innerHTML += letterText.charAt(i);
+                i++;
+                setTimeout(typeWriter, 30);
+            }
+        }
+    </script>
+</body>
+</html>
